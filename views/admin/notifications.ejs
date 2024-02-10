@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate')%>
+
+<h2 class="my-4">Notifications</h2>
+
+<% for (let noti of user.notifications) { %>
+    <div class="notification my-3">
+        <div class="user-details">
+            <img src="<%= noti.user.avatar.url %>" class="user-image"/>
+            <p><b><%= noti.user.first %> <%= noti.user.last %></b> wants to generate <b><%= noti.subject.title %></b> paper</p>
+        </div>
+        <div class="forms-container">
+            <form action="/admin/accept" method="POST">
+                <input class="d-none" type="text" name="user" value="<%= noti.user._id %>">
+                <input class="d-none" type="text" name="subject" value="<%= noti.subject._id %>" >
+                <button class="btn btn-dark mx-2">Accept</button>
+            </form>
+            <form action="/admin/decline" method="POST">
+                <input class="d-none" type="text" name="user" value="<%= noti.user._id %>">
+                <input class="d-none" type="text" name="subject" value="<%= noti.subject._id %>" >
+                <button class="btn btn-outline-dark mx-2">Decline</button>
+            </form>
+        </div>
+    </div>
+<% } %>

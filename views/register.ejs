@@ -1,0 +1,70 @@
+<% layout('layouts/common')%>
+<!-- <h2 class="text-center display-4">Register</h2> -->
+
+<div class="row justify-content-center" id="mainContainer">
+    <div class="col-md-10">
+        <%- include('./partials/flash')%>
+        <h2 class="my-3">Register</h2>
+        <form action="/register" method="POST" class="validated-form" novalidate enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="first">First Name</label>
+                        <input class="form-control" type="text" id="first" name="first" value="<%= first %>" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="last">Last Name</label>
+                        <input class="form-control" type="text" id="last" name="last" value="<%= last %>" required >
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <!-- <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image">
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Choose profile image</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div> -->
+                <div>
+                  <label for="image" class="form-label">Profile Image</label>
+                   <input class="form-control" type="file" id="image" name="image">
+                </div>
+            </div>
+            <!-- <div class="custom-file mx-3 mb-3">
+                <input type="file" class="custom-file-input" name="image" id="image">
+                <label class="custom-file-label" for="image">Choose file</label>
+             </div> -->
+            <div class="mb-3">
+                <label class="form-label" for="code">Admin Code</label>
+                <input class="form-control" type="text" id="code" name="code" value="<%= code %>" placeholder="Some Secret">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-dark">Register</button>
+        </form>
+    </div>
+</div>

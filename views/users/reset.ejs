@@ -1,0 +1,25 @@
+<% layout('layouts/common')%>
+<!-- <h2 class="text-center display-4">Register</h2> -->
+<div class="row justify-content-center" id="mainContainer">
+    <div class="col-md-10">
+        <%- include('../partials/flash')%>
+        <form action="/reset/<%= token %>?_method=PUT" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="confirm">Confirm Password</label>
+                <input class="form-control" type="password" id="confirm" name="confirm" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-dark">Register</button>
+        </form>
+    </div>
+</div>
+

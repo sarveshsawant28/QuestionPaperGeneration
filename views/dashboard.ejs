@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate')%>
+
+<h2 class="my-3">Subjects</h2>
+
+<div class="row my-3">
+  <% for (let subject of userSubjects) { %>
+    <div class="col-md-3">
+      <div class="subject p-3">
+        <p class="teacherSubjectTitle"><%= subject.title %></p>
+        <div class="status d-flex justify-content-between">
+          <p>Status</p>
+          <div class="<%= subject.teachers.includes(currentUser._id) ? 'granted' : 'decline' %>"></div>
+        </div>
+        <a href="/subjects/<%=subject._id%>/patterns" class="btn btn-dark">Generate</a>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+
+  <p>Click <b><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">here</a></b> to add Subjects</p>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new Subject</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/subjects" method="POST">
+            <select name="subject">
+                <% for (let sub of subjects) { %>
+                    <option val="<%= sub._id %>"><%= sub.title %></option>
+                <% } %>
+            </select>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-dark">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

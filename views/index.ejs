@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Paper Generator</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<body>
+    <nav>
+        <a>
+            <h2>QP</h2>
+        </a>
+        <ul class="nav-container">
+            <% if(currentUser && currentUser.isAdmin) {%>
+                <a href="/admin">Dashboard</a>
+                <a href="/admin/notifications">Notifications</a>
+            <% } %>
+            <% if(currentUser && !currentUser.isAdmin) {%>
+                <a href="/subjects">Subjects</a>
+            <% } %>
+            <% if(!currentUser) {%>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            <% } else {%>
+                <a href="/logout">Logout</a>
+            <% } %>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="contents">
+            <h1>Automatic Question Paper Generator</h1>
+            <p>Helps you to generate question papers quickly</p>
+            <!-- <button class="btn-default">Generate</button> -->
+            <% if(!currentUser) {%>
+                <a href="/subjects" class="btn-default">Generate</a>
+            <% } %>
+            <% if(currentUser && currentUser.isAdmin) {%>
+                <a href="/admin" class="btn-default">Generate</a>
+            <% } %>
+            <% if(currentUser && !currentUser.isAdmin) {%>
+                <a href="/subjects" class="btn-default">Generate</a>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>

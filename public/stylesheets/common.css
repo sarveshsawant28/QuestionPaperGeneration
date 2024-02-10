@@ -1,0 +1,55 @@
+body {
+  font-family: 'Playfair Display', serif;
+}
+
+
+
+main {
+  height: 100vh;
+  overflow: hidden;
+}
+
+nav {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav h2 {
+  color: white;
+}
+
+.nav-container a {
+  margin: 0.5rem 1rem;
+  text-decoration: none;
+  padding-bottom: 0.5rem;
+  color: #0C161E;
+  letter-spacing: 0.05rem;
+}
+
+.nav-container a:hover {
+  border-bottom: 1px solid #0C161E;
+}
+
+.btn-dark {
+  background: #0C161E;
+}
+
+#mainContainer {
+  padding-top: 20vh;
+}
+
+.forgot-link {
+  color: #0C161E;
+  text-decoration: none;
+}

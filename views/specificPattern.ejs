@@ -1,0 +1,126 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="alert alert-danger fade show d-none" role="alert">
+    <p id="alertMessage"></p>
+</div>
+
+<h2 class="<%= pattern.maxMarks >= 80  ? 'd-none' : '' %> my-3">Select Portion</h2>
+
+<form action="/subjects/<%= subject._id %>/patterns/<%= patternId %>/generate" method="POST">
+    <% for (let module of subject.modules) { %>
+        <div class="<%= pattern.maxMarks >= 80  ? 'd-none' : '' %> my-1">
+            <input type="checkbox" name="portion[]" id="<%= module.title %>" value="<%= module._id %>" checked />
+            <label for="<%= module.title %>"><%= module.title %></label>
+        </div>
+    <% } %>
+
+    <div>
+        <h2 class="my-3">Do you want to customise paper?</h2>
+        <input type="radio" name="customise" id="yes" value="yes" />
+        <label for="yes">Yes</label> <br>
+        <input type="radio" name="customise" id="no" value="no" checked />
+        <label for="no">No</label>
+    </div>
+
+    <div id="hide" class="d-none">
+        <h3 class="my-3">Select no. of questions from each module <small class="text-secondary">(Total: <%= maxNumOfQues %>)</small></h3>
+        <% for (let module of subject.modules) { %>
+            <div class="col-6">
+                <div class="row my-2">
+                    <div class="col-3">
+                        <input type="number" class="form-control" name="marks[<%= module.title %>]" id="<%= module._id %>" max="<%= module.questions.length %>" value="0" min="0" />
+                    </div>
+                    <div class="col-9">
+                        <label for="<%= module._id %>"><%= module.title %></label>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <% if(pattern.maxMarks === 20) { %>
+        <div class="col-md-6">
+            <div>
+                <label for="examDate" class="mt-2">Exam Date</label>
+                <input type="date" name="examDate" class="form-control my-2" id="examDate" required />
+            </div>
+            <div>
+                <label for="examType">Select Exam</label>
+                <select name="examType" class="form-control my-2" id="examType" required>
+                    <option value="1">IAT 1</option>
+                    <option value="2">IAT 2</option>
+                </select>
+            </div>
+        </div>
+    <% } %>
+
+    <% if(pattern.maxMarks === 80) { %>
+        <div>
+            <label for="semExamDate" class="mt-2">Exam Date</label>
+            <div class="col-md-6"> 
+                <input type="month" class="form-control my-2" name="semExamDate" id="semExamDate" required />
+            </div>
+        </div>
+    <% } %>
+
+    <button class="btn btn-dark">Submit</button>
+</form>
+
+<script>
+    const btns = document.querySelectorAll("input[type=radio]");
+    const yesBtn = document.querySelector("#yes");
+    const divHide = document.getElementById("hide");
+    for(let btn of btns) {
+        btn.addEventListener("input", function() {
+        console.log(yesBtn.checked);
+        if(yesBtn.checked) {
+            divHide.classList.remove("d-none");
+        } else {
+            divHide.classList.add("d-none");
+        }
+    })
+    }
+
+    const maxQuestions = <%= maxNumOfQues %>;
+    const form = document.querySelector('form');
+    form.addEventListener("submit", function(e) {
+        if(yesBtn.checked) {
+            let sum = 0;
+            const numInputs = document.querySelectorAll("#hide input[type='number']");
+            for(let input of numInputs) {
+                sum+=parseInt(input.value);
+            }
+            console.log(maxQuestions, sum);
+            console.log(typeof maxQuestions, typeof sum);
+            if(maxQuestions !== sum) {
+                e.preventDefault();
+                const alertMessage = document.querySelector("#alertMessage");
+                alertMessage.innerText = `Total Number of Questions should be ${maxQuestions}, currently you have ${sum}`;
+                alertMessage.parentElement.classList.remove("d-none");
+            }
+        }
+    })
+
+    const portionInputs = document.querySelectorAll("input[type='checkbox']");
+    for(let input of portionInputs) {
+        input.addEventListener("input", function(e) {
+            const numInputs = document.querySelectorAll("#hide input[type='number']");
+            for(let ins of portionInputs) {
+                const isChecked = ins.checked;
+                const idNum = ins.getAttribute("id");
+                console.log(idNum);
+                console.log(`input[${idNum}]`);
+                // const output = document.querySelector(`input[${idNum}]`);
+                const output = document.querySelector(`input[name="marks[${idNum}]"]`);
+                const getParent = output.parentElement.parentElement.parentElement;
+                if(!isChecked) {
+                    getParent.classList.add("d-none");
+                } else {
+                    getParent.classList.remove("d-none");
+                }
+            }
+        })
+    }
+
+
+</script>

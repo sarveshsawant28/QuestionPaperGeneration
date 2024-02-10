@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate')%>
+
+<h2 class="my-3">Modules</h2>
+
+<% for (let module of subject.modules) { %>
+    <div class="module-container">
+        <p class="module-title"><%=module.title %></p>
+        <div class="btn-container">
+            <a href="/admin/subjects/<%= subject._id %>/modules/<%= module._id %>" class="btn btn-dark">View</a>
+            <button class="toggleModule btn btn-dark">Edit</button>
+            <form action="/admin/subjects/<%= subject._id %>/modules/<%= module._id %>?_method=DELETE" method="post">
+                <button type="submit" class="btn btn-dark">Delete</button>
+            </form>
+        </div>
+    </div>
+
+    <form action="/admin/subjects/<%= subject._id %>/modules/<%= module._id %>?_method=PUT" class="d-none" method="post">
+        <div class="col-4">
+            <label>Title</label>
+            <input type="text" name="module[title]" class="form-control my-2" value="<%= module.title %>"  />
+        </div>
+        <div class="col-4">
+            <label>Max Marks</label>
+            <input type="number" name="module[marks]" class="form-control my-2" value="<%= module.marks %>" />
+        </div>
+        <button type="submit" class="btn btn-dark">Update</button>
+    </form>
+<% } %>
+
+<h2 class="my-3">Add new Module</h2>
+
+<form action="/admin/subjects/<%= subject._id %>/modules" method="post">
+    <div class="col-4">
+        <input type="text" class="form-control mb-3" name="module[title]" placeholder="Module Title" />
+    </div>
+    <div class="col-4">
+        <input type="number" class="form-control mb-3" name="module[marks]" placeholder="Max Marks" />
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+
+<script>
+    const btns = document.querySelectorAll(".toggleModule");
+    for(let btn of btns) {
+        btn.addEventListener("click", function(e) {
+            if(this.innerText === "Edit") {
+                this.innerText = "Cancel";
+            } else {
+                this.innerText = "Edit";
+            }
+            const getForm = this.parentElement.parentElement.nextElementSibling;
+            console.dir(getForm);
+            getForm.classList.toggle('d-none');
+        })
+    }
+</script>

@@ -1,0 +1,203 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2 class="my-3">Semester Papers</h2>
+        <div class="semPapers d-flex">
+            <% for(let pattern of semPatterns) { %>
+                <div class="pattern-img-container m-2" data="<%= pattern._id %>">
+                    <img src="/images/pattern.svg" class="pattern-img">
+                </div>
+                <!-- <li><a href="/subjects/<%= subject._id %>/patterns/<%= pattern._id %>"><%= pattern.title %></a></li> -->
+            <% } %>
+        </div>
+
+        <h2 class="my-3">Unit Papers</h2>
+        <div class="unitPapers d-flex">
+        <% for(let pattern of unitPatterns) { %>
+            <div class="pattern-img-container m-2" data="<%= pattern._id %>">
+                <img src="/images/pattern.svg" class="pattern-img">
+            </div>
+            <!-- <li><a href="/subjects/<%= subject._id %>/patterns/<%= pattern._id %>"><%= pattern.title %></a></li> -->
+        <% } %>
+        </div>
+
+        <div>
+            <a href="#" class="btn btn-dark ms-2" id="patternBtn">Next</a>
+        </div>
+    </div>
+    <div class="col-lg-6 py-4">
+        <div class="row">
+            <div>
+                <div class="paper d-none" data="<%= semPatterns[0]._id %>">
+                    <p>Q1 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q2 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q3 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q4 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q5 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q6 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+                </div>
+                <div class="paper d-none" data="<%= semPatterns[1]._id %>">
+                    <p>Q1 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q2 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q3 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q4 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q5 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q6 Attempt the following</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="paper d-none" data="<%= unitPatterns[0]._id %>">
+                <p>Q1 Attempt 5 from 6</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q2 Attempt Any 1</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q3 Attempt Any 1</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+            </div>
+            <div class="paper d-none" data="<%= unitPatterns[1]._id %>">
+                <p>Q1 Attempt 5 from 6</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q2 Attempt Any 1</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+        
+                    <p>Q3 Attempt Any 1</p>
+                    <ol>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                        <li class="paper-question my-1"></li>
+                    </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const patternDivs = document.querySelectorAll(".pattern-img-container");
+    const mainBtn = document.querySelector("#patternBtn");
+    const paperDivs = document.querySelectorAll(".paper");
+    const paperQuestions = document.querySelectorAll(".paper-question");
+    for(let li of paperQuestions) {
+        const randNum = Math.floor(Math.random() * 5) + 8;
+        li.classList.add(`col-md-${randNum}`);
+    }
+
+    for(let div of patternDivs) {
+        div.addEventListener("click", function(e) {
+            for(let d of patternDivs) {
+                d.classList.remove("pattern-img-container-bordered");
+            }
+            this.classList.add("pattern-img-container-bordered");
+            const data = this.getAttribute("data");
+            const url = `/subjects/<%= subject._id %>/patterns/${data}`;
+            mainBtn.setAttribute("href", url);
+            for(let d of paperDivs) {
+                // console.log(d.getAttribute("data") === data);
+                // console.log(typeof d.getAttribute("data"));
+                // console.log(typeof data);
+                // console.log(d.getAttribute("data"));
+                // console.log(data);
+                if(d.getAttribute("data") === data) {
+                    d.classList.remove("d-none");
+                } else {
+                    if(!d.classList.contains("d-none")) {
+                        d.classList.add("d-none");
+                    }
+                }
+            }
+        })
+    }
+</script>

@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate')%>
+
+<h2 class="my-3">Questions</h2>
+
+<% for (let question of module.questions) { %>
+    <div class="question-container">
+        <p class="question-title"><%= question.title %></p>
+        <div class="btn-container">
+            <button class="toggleQuestion btn btn-dark">Edit</button>
+            <form action="/admin/subjects/<%= subject._id %>/modules/<%= module._id %>/questions/<%= question._id %>?_method=DELETE" method="post">
+               <button class="btn btn-dark">Delete</button>
+            </form>
+        </div>
+    </div>
+        <form action="/admin/subjects/<%= subject._id %>/modules/<%= module._id %>/questions/<%= question._id %>?_method=PUT" class="d-none" method="post">
+            <div class="col-md-8 my-2">
+                <input type="title" class="form-control" name="question[title]" value="<%= question.title %>">
+            </div>
+            <button class="btn btn-dark">Submit</button>
+        </form>
+
+<% } %>
+
+
+<h2 class="my-3">Add new Question</h2>
+
+<form action="/admin/subjects/<%= subject._id %>/modules/<%= module._id %>/questions"  method="post">
+    <div class="col-md-8">
+        <input type="text" class="form-control my-2" name="question[title]" placeholder="Title">
+    </div>
+    <button class="btn btn-dark">Submit</button>
+</form>
+
+<script>
+    const btns = document.querySelectorAll(".toggleQuestion");
+    for(let btn of btns) {
+        btn.addEventListener("click", function(e) {
+            if(this.innerText === "Edit") {
+                this.innerText = "Cancel";
+            } else {
+                this.innerText = "Edit";
+            }
+            const getForm = this.parentElement.parentElement.nextElementSibling;
+            console.dir(getForm);
+            getForm.classList.toggle('d-none');
+        })
+    }
+</script>
